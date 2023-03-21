@@ -1,7 +1,8 @@
+import { Button } from "antd";
 import React from "react";
-import "antd/dist/antd.css";
+
 const App: React.FC = () => {
-  return <div></div>;
+  return <div><Button>Button</Button></div>;
 };
 
 export default App;
