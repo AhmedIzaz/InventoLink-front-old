@@ -46,8 +46,18 @@ const App: React.FC = () => {
           } w-full min-h-screen`}
         >
           <div className="w-full p-1 flex justify-end">
-            {/* <div><NormalSelect label="Hello"/>
-</div> */}
+            <div>
+              <NormalSelect
+                width={200}
+                showSearch={true}
+                allowClear={true}
+                placeholder="Select Business Unit"
+                options={[{ label: "InventoLink", value: 1 }]}
+                onChange={(valueOption) => {
+                  console.log(valueOption);
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
