@@ -1,38 +1,50 @@
 import { Select } from "antd";
 import React from "react";
+interface IOption {
+  label?: string;
+  value?: number;
+}
 interface NormalSelectPropsType {
   showSearch?: boolean;
   width?: number;
   placeholder?: string;
-  onChange?: (value: { label?: string; value?: number } | null) => void;
+  onChange?: (value: IOption | IOption[] | null) => void;
   onSearch?: (value: string) => void;
   label?: string;
   filterOption?: boolean | ((inputValue?: string, option?: any) => boolean);
-  options?: { label?: string; value?: number }[] | [];
+  options?: IOption[] | [];
+  clearIcon?: boolean;
+  allowClear?: boolean;
 }
 
-const NormalSelect: React.FC = ({
-  showSearch = false,
-  width = 350,
-  placeholder = "",
-  onChange = () => {},
-  onSearch = () => {},
-  filterOption = () => false,
-  options = [],
-  label = "",
+const NormalSelect = ({
+  showSearch,
+  width,
+  placeholder,
+  onChange,
+  onSearch,
+  filterOption,
+  options,
+  label,
+  clearIcon,
+  allowClear,
 }: NormalSelectPropsType) => {
   return (
     <>
       {label ? <label>{label}</label> : <></>}
       <Select
-        showSearch={showSearch}
-        style={{ width }}
-        placeholder={placeholder}
+        showSearch={showSearch || false}
+        style={{ width: width || 350 }}
+        placeholder={placeholder || ""}
         optionFilterProp="children"
-        onChange={onChange}
+        onChange={(_, valueOption) => {
+          onChange?.(valueOption || null);
+        }}
         onSearch={onSearch}
         filterOption={filterOption}
         options={options}
+        clearIcon={clearIcon}
+        allowClear={allowClear}
       />
     </>
   );
